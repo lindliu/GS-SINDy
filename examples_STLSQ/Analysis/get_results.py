@@ -414,6 +414,8 @@ if __name__ == "__main__":
         rmse = np.array(rmse)
         
         mp = ((real*pred)!=0).sum(axis=(1,2)) / (pred!=0).sum(axis=(1,2))
+        mp[np.isnan(mp)] = 0
+        
         mr = ((real*pred)!=0).sum(axis=(1,2)) / (real!=0).sum(axis=(1,2))
         
         return rmse, mp, mr
@@ -508,19 +510,19 @@ if __name__ == "__main__":
         table_poly[:,9:12] = np.c_[rmse_sindy_poly, mp_sindy_poly, mr_sindy_poly]
     
         table_metrics = np.zeros([13,13], dtype=object)
-        table_metrics[:,0] = ['Metric', 'traj. 1', 'traj. 2', 'traj. 3','traj. 4','traj. 5','traj. 6', \
-                              'traj. 1', 'traj. 2', 'traj. 3','traj. 4','traj. 5','traj. 6']
+        table_metrics[:,0] = ['Metric', '1', '2', '3','4','5','6', \
+                              '1', '2', '3','4','5','6']
         table_metrics[:,1:] = np.r_[table_mix, table_poly]
     else:
         table_metrics = np.zeros([7,13], dtype=object)
-        table_metrics[:,0] = ['Metric', 'traj. 1', 'traj. 2', 'traj. 3','traj. 4','traj. 5','traj. 6']
+        table_metrics[:,0] = ['Metric', '1', '2', '3','4','5','6']
         table_metrics[:,1:] = table_mix
 
         
     def get_latex_line(input_list):
         print_type = ['.2e', '.2f', '.2f', '.2e', '.2f', '.2f', '.2e', '.2f', '.2f', '.2e', '.2f', '.2f']
         
-        line = ['&']
+        line = []#['&']
         line.append(input_list[0])
         line.append('&')
         for i, ele in enumerate(input_list[1:]):
@@ -569,9 +571,9 @@ if __name__ == "__main__":
         file.write(f'{rmse_gsindy_all_mix.mean():.2e}, {mp_gsindy_all_mix.mean():.2f}, {mr_gsindy_all_mix.mean():.2f} ')
         file.writelines(['\n', '*'*15, ' gsindy_one: mean of rmse, precision, recall ', '*'*15, '\n'])
         file.write(f'{rmse_gsindy_one_mix.mean():.2e}, {mp_gsindy_one_mix.mean():.2f}, {mr_gsindy_one_mix.mean():.2f} ')
-        file.writelines(['*'*15, ' E-sindy: mean of rmse, precision, recall ', '*'*15, '\n'])
+        file.writelines(['\n', '*'*15, ' E-sindy: mean of rmse, precision, recall ', '*'*15, '\n'])
         file.write(f'{rmse_esindy_mix.mean():.2e}, {mp_esindy_mix.mean():.2f}, {mr_esindy_mix.mean():.2f} ')
-        file.writelines(['*'*15, ' sindy: mean of rmse, precision, recall ', '*'*15, '\n'])
+        file.writelines(['\n', '*'*15, ' sindy: mean of rmse, precision, recall ', '*'*15, '\n'])
         file.write(f'{rmse_sindy_mix.mean():.2e}, {mp_sindy_mix.mean():.2f}, {mr_sindy_mix.mean():.2f} ')
 
         Mean_mix = np.array([[rmse_gsindy_all_mix.mean(), mp_gsindy_all_mix.mean(), mr_gsindy_all_mix.mean()],
@@ -586,9 +588,9 @@ if __name__ == "__main__":
             file.write(f'{rmse_gsindy_all_poly.mean():.2e}, {mp_gsindy_all_poly.mean():.2f}, {mr_gsindy_all_poly.mean():.2f} ')
             file.writelines(['\n', '*'*15, ' gsindy_one: mean of rmse, precision, recall ', '*'*15, '\n'])
             file.write(f'{rmse_gsindy_one_poly.mean():.2e}, {mp_gsindy_one_poly.mean():.2f}, {mr_gsindy_one_poly.mean():.2f} ')
-            file.writelines(['*'*15, ' E-sindy: mean of rmse, precision, recall ', '*'*15, '\n'])
+            file.writelines(['\n', '*'*15, ' E-sindy: mean of rmse, precision, recall ', '*'*15, '\n'])
             file.write(f'{rmse_esindy_poly.mean():.2e}, {mp_esindy_poly.mean():.2f}, {mr_esindy_poly.mean():.2f} ')
-            file.writelines(['*'*15, ' sindy: mean of rmse, precision, recall ', '*'*15, '\n'])
+            file.writelines(['\n', '*'*15, ' sindy: mean of rmse, precision, recall ', '*'*15, '\n'])
             file.write(f'{rmse_sindy_poly.mean():.2e}, {mp_sindy_poly.mean():.2f}, {mr_sindy_poly.mean():.2f} ')
         
             os.makedirs(os.path.join(f'{directory}/average'), exist_ok=True)

@@ -503,7 +503,14 @@ class GSINDy():
             num_diff_ = diff_basis[k].sum()*self.num_traj
             Xi_final[:,k,diff_basis[k]] = Xi0_[:num_diff_].reshape([self.num_traj,-1])
             Xi_final[:,k,same_basis[k]] = Xi0_[num_diff_:]
-    
+        
+        #############?????????????????################
+    	# mask_tol = np.abs(Xi_final.mean(0))>self.precision  
+        mask_tol = (Xi_final!=0).any(0)
+        all_basis[0] = np.logical_and(mask_tol[0],all_basis[0])
+        all_basis[1] = np.logical_and(mask_tol[1],all_basis[1])
+        ##############################################
+        
         if split_basis:
             self.all_basis = copy.deepcopy(all_basis)
         else:

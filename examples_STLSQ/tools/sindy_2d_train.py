@@ -8,11 +8,12 @@ Created on Wed Dec 20 22:46:18 2023
 
 
 from sindy_2d import fit_sindy_2d, model_selection_pysindy_2d, model_selection_coeff_2d
-from utils import ode_solver, get_deriv
+from utils import ode_solver, get_deriv, smooth
 import os
 import numpy as np
 
-def sindy_2d_train(func, t, x0_list, a_list, real_list, suffix, basis, precision, alpha, opt, deriv_spline, ensemble, path_base='results', \
+    
+def sindy_2d_train(func, t, x0_list, a_list, real_list, suffix, basis, precision, alpha, opt, deriv_spline, ensemble, noise_var, path_base='results', \
                    threshold_sindy_list=[1e-3, 5e-3, 1e-2, 5e-2, 1e-1]):
     
     model_best_list = []
@@ -21,10 +22,15 @@ def sindy_2d_train(func, t, x0_list, a_list, real_list, suffix, basis, precision
         a = a_list[idx]
         
         ### get trajectory
-        sol_, t_ = ode_solver(func, x0, t, a)
-        # ## add noise
-        # sol_ = sol_ + np.random.randn(*sol_.shape)*sol_*.01
+        sol_, t_ = ode_solver(func, x0, t, a, noise_var=noise_var)
+        # ### add noise
+        # sol_noised = sol_ + np.random.randn(*sol_.shape)*.05
+        # ### smooth
+        # sol_, t_ = smooth(sol_noised, t_, window_size=None, poly_order=2, verbose=False)
+        
+        
         _, sol_deriv_, _ = get_deriv(sol_, t_, deriv_spline)
+        
         
         if opt in ['SQTL', 'LASSO', 'SR3']:
             ### sindy

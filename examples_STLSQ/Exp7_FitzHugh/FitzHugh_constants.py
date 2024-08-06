@@ -10,7 +10,8 @@ import numpy as np
 from utils import func_FitzHugh
 from utils import basis_functions_mix0, basis_functions_mix1, basis_functions_name_mix0, basis_functions_name_mix1, \
     basis_functions_poly_5, basis_functions_name_poly_5, basis_functions_poly_4, basis_functions_name_poly_4, \
-    basis_functions_poly_3, basis_functions_name_poly_3
+    basis_functions_poly_3, basis_functions_name_poly_3, \
+        basis_functions_mix1_, basis_functions_name_mix1_
 np.random.seed(42)
 
 ########## hyper parameters ###########
@@ -26,6 +27,7 @@ threshold_similarity_list = [[1e-3, 1e-2], [1e-1]]
 # but we know it comes from the same series, 
 # so the coefficient should be the same, so threshold should be big
 
+noise_var = 0
 
 ########## function variable ###########
 dt = .2
@@ -45,9 +47,9 @@ basis_type = 'mix'##'poly'##
 def get_basis_functions(basis_type, GSINDY=True):
     if GSINDY:
         if basis_type == 'mix':
-            basis_functions_list = [basis_functions_mix0, basis_functions_mix1]                           ### basis functions for each feature
+            basis_functions_list = [basis_functions_mix0, basis_functions_mix1_]                           ### basis functions for each feature
             basis_functions_name_list = [np.array([f(1,1) for f in basis_functions_name_mix0]), \
-                                         np.array([f(1,1) for f in basis_functions_name_mix1])]     ### corresponding names of the basis functions
+                                         np.array([f(1,1) for f in basis_functions_name_mix1_])]     ### corresponding names of the basis functions
             opt = 'SQTL'  ##['Manually', 'SQTL', 'LASSO', 'SR3']
         if basis_type == 'poly':
             basis_functions_list = [basis_functions_poly_4, basis_functions_poly_4]              ### basis functions for each feature

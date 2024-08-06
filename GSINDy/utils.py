@@ -164,13 +164,21 @@ basis_functions_mix0 = np.array([lambda x,y: 1, \
         lambda x,y: x**3, lambda x,y: x**2*y, lambda x,y: x*y**2, lambda x,y: y**3, \
         lambda x,y: x**4, lambda x,y: 1/x, 
         lambda x,y: np.sin(x), lambda x,y: np.cos(x), lambda x,y: np.exp(x)])
-    
+
 basis_functions_mix1 = np.array([lambda y,x: 1, \
         lambda y,x: x, lambda y,x: y, \
         lambda y,x: x**2, lambda y,x: x*y, lambda y,x: y**2, \
         lambda y,x: x**3, lambda y,x: x**2*y, lambda y,x: x*y**2, lambda y,x: y**3, \
         lambda y,x: y**4, lambda y,x: 1/y, 
         lambda y,x: np.sin(y), lambda y,x: np.cos(y), lambda y,x: np.exp(y)])
+
+basis_functions_mix1_ = np.array([lambda x,y: 1, \
+        lambda x,y: x, lambda x,y: y, \
+        lambda x,y: x**2, lambda x,y: x*y, lambda x,y: y**2, \
+        lambda x,y: x**3, lambda x,y: x**2*y, lambda x,y: x*y**2, lambda x,y: y**3, \
+        lambda x,y: y**4, lambda x,y: 1/y, 
+        lambda x,y: np.sin(y), lambda x,y: np.cos(y), lambda x,y: np.exp(y)])
+        
 
 basis_functions_name_mix0 = [lambda x,y: '1', \
         lambda x,y: 'x', lambda x,y: 'y', \
@@ -185,6 +193,13 @@ basis_functions_name_mix1 = [lambda y,x: '1', \
         lambda y,x: 'x^3', lambda y,x: 'x^2y', lambda y,x: 'xy^2', lambda y,x: 'y^3', \
         lambda y,x: 'y^4', lambda y,x: '1/y', \
         lambda y,x: 'sin(y)', lambda y,x: 'cos(y)', lambda y,x: 'e^y']
+
+basis_functions_name_mix1_ = [lambda x,y: '1', \
+        lambda x,y: 'x', lambda x,y: 'y', \
+        lambda x,y: 'x^2', lambda x,y: 'xy', lambda x,y: 'y^2', \
+        lambda x,y: 'x^3', lambda x,y: 'x^2y', lambda x,y: 'xy^2', lambda x,y: 'y^3', \
+        lambda x,y: 'y^4', lambda x,y: '1/y', \
+        lambda x,y: 'sin(y)', lambda x,y: 'cos(y)', lambda x,y: 'e^y']
     
     
 ############ polynomial basis functions(degree 5) 2d ################
@@ -275,6 +290,25 @@ basis_functions_mix2_3d = np.array([
         lambda z,x,y: x**3, lambda z,x,y: y**3, lambda z,x,y: z**3,  \
         lambda z,x,y: z**4, lambda z,x,y: 1/z, lambda z,x,y: np.exp(z), lambda z,x,y: np.sin(z), lambda z,x,y: np.cos(z)])
 
+basis_functions_mix1_3d_ = np.array([
+        lambda x,y,z: 1, lambda x,y,z: x, lambda x,y,z: y, lambda x,y,z: z,\
+        lambda x,y,z: x**2, lambda x,y,z: y**2, lambda x,y,z: z**2, lambda x,y,z: x*y, lambda x,y,z: x*z, lambda x,y,z: y*z, \
+        lambda x,y,z: x**2*y, lambda x,y,z: x**2*z, \
+        lambda x,y,z: y**2*x, lambda x,y,z: y**2*z, \
+        lambda x,y,z: z**2*x, lambda x,y,z: z**2*y, \
+        lambda x,y,z: x**3, lambda x,y,z: y**3, lambda x,y,z: z**3,  \
+        lambda x,y,z: y**4, lambda x,y,z: 1/y, lambda x,y,z: np.exp(y), lambda x,y,z: np.sin(y), lambda x,y,z: np.cos(y)])
+    
+basis_functions_mix2_3d_ = np.array([
+        lambda x,y,z: 1, lambda x,y,z: x, lambda x,y,z: y, lambda x,y,z: z,\
+        lambda x,y,z: x**2, lambda x,y,z: y**2, lambda x,y,z: z**2, lambda x,y,z: x*y, lambda x,y,z: x*z, lambda x,y,z: y*z, \
+        lambda x,y,z: x**2*y, lambda x,y,z: x**2*z, \
+        lambda x,y,z: y**2*x, lambda x,y,z: y**2*z, \
+        lambda x,y,z: z**2*x, lambda x,y,z: z**2*y, \
+        lambda x,y,z: x**3, lambda x,y,z: y**3, lambda x,y,z: z**3,  \
+        lambda x,y,z: z**4, lambda x,y,z: 1/z, lambda x,y,z: np.exp(z), lambda x,y,z: np.sin(z), lambda x,y,z: np.cos(z)])
+
+    
 basis_functions_name_mix0_3d = [
         lambda x,y,z: '1', lambda x,y,z: 'x', lambda x,y,z: 'y', lambda x,y,z: 'z',\
         lambda x,y,z: 'x^2', lambda x,y,z: 'y^2', lambda x,y,z: 'z^2', lambda x,y,z: 'xy', lambda x,y,z: 'xz', lambda x,y,z: 'yz', \
@@ -283,7 +317,7 @@ basis_functions_name_mix0_3d = [
         lambda x,y,z: 'z^2x', lambda x,y,z: 'z^2y', \
         lambda x,y,z: 'x^3', lambda x,y,z: 'y^3', lambda x,y,z: 'z^3',  \
         lambda x,y,z: 'x^4', lambda x,y,z: '1/x', lambda x,y,z: 'e^x', lambda x,y,z: 'sin(x)', lambda x,y,z: 'cos(x)']
-    
+
 basis_functions_name_mix1_3d = [
         lambda y,x,z: '1', lambda y,x,z: 'x', lambda y,x,z: 'y', lambda y,x,z: 'z',\
         lambda y,x,z: 'x^2', lambda y,x,z: 'y^2', lambda x,y,z: 'z^2', lambda y,x,z: 'xy', lambda y,x,z: 'xz', lambda y,x,z: 'yz', \
@@ -301,6 +335,24 @@ basis_functions_name_mix2_3d = [
         lambda z,x,y: 'z^2x', lambda z,x,y: 'z^2y', \
         lambda z,x,y: 'x^3', lambda z,x,y: 'y^3', lambda z,x,y: 'z^3',  \
         lambda z,x,y: 'z^4', lambda z,x,y: '1/z', lambda z,x,y: 'e^z', lambda z,x,y: 'sin(z)', lambda z,x,y: 'cos(z)']
+        
+basis_functions_name_mix1_3d_ = [
+        lambda x,y,z: '1', lambda x,y,z: 'x', lambda x,y,z: 'y', lambda x,y,z: 'z',\
+        lambda x,y,z: 'x^2', lambda x,y,z: 'y^2', lambda x,y,z: 'z^2', lambda x,y,z: 'xy', lambda x,y,z: 'xz', lambda x,y,z: 'yz', \
+        lambda x,y,z: 'x^2y', lambda x,y,z: 'x^2z', \
+        lambda x,y,z: 'y^2x', lambda x,y,z: 'y^2z', \
+        lambda x,y,z: 'z^2x', lambda x,y,z: 'z^2y', \
+        lambda x,y,z: 'x^3', lambda x,y,z: 'y^3', lambda x,y,z: 'z^3',  \
+        lambda x,y,z: 'y^4', lambda x,y,z: '1/y', lambda x,y,z: 'e^y', lambda x,y,z: 'sin(y)', lambda x,y,z: 'cos(y)']
+
+basis_functions_name_mix2_3d_ = [
+        lambda x,y,z: '1', lambda x,y,z: 'x', lambda x,y,z: 'y', lambda x,y,z: 'z',\
+        lambda x,y,z: 'x^2', lambda x,y,z: 'y^2', lambda x,y,z: 'z^2', lambda x,y,z: 'xy', lambda x,y,z: 'xz', lambda x,y,z: 'yz', \
+        lambda x,y,z: 'x^2y', lambda x,y,z: 'x^2z', \
+        lambda x,y,z: 'y^2x', lambda x,y,z: 'y^2z', \
+        lambda x,y,z: 'z^2x', lambda x,y,z: 'z^2y', \
+        lambda x,y,z: 'x^3', lambda x,y,z: 'y^3', lambda x,y,z: 'z^3',  \
+        lambda x,y,z: 'z^4', lambda x,y,z: '1/z', lambda x,y,z: 'e^z', lambda x,y,z: 'sin(z)', lambda x,y,z: 'cos(z)']
     
     
 ############ mix same basis functions 3d ################
@@ -365,8 +417,8 @@ basis_functions_poly_name_3d = [
 ########################################
 ##### data generation ##################
 ########################################
-def data_generator(func, x0, t, a, real_list, num=None, num_split=None):
-    sol_org_list = get_multi_sol(func, x0, t, a)
+def data_generator(func, x0, t, a, real_list, num=None, num_split=None, noise_var=0):
+    sol_org_list = get_multi_sol(func, x0, t, a, noise_var)
     
     if num==1:    
         ll = t.shape[0]//num_split
@@ -400,15 +452,25 @@ def plot_mult_traj(sol_org_list, t, a, real_list):
     
     
 from scipy.integrate import odeint
-def ode_solver(func, x0, t, a):
+def ode_solver(func, x0, t, a, noise_var=0):
     sol = odeint(func, x0, t, args=a)
-    return sol, t
+    
+    if noise_var==0:
+        return sol, t
 
-def get_multi_sol(func, x0, t, a):
+    else:
+        ### add noise
+        sol_noised = sol + np.random.randn(*sol.shape)*noise_var
+        ### smooth
+        sol, t = smooth(sol_noised, t, window_size=None, poly_order=2, verbose=False)
+        
+        return sol, t
+
+def get_multi_sol(func, x0, t, a, noise_var):
     num_traj = len(a)
     sol_org_list_ = []
     for i in range(num_traj):
-        sol_, _ = ode_solver(func, x0[i], t, a[i])
+        sol_, _ = ode_solver(func, x0[i], t, a[i], noise_var)
         sol_org_list_.append(sol_)
     
     return sol_org_list_
@@ -437,3 +499,84 @@ def get_deriv(sol, t, deriv_spline=True):
             sol_deriv[:,i] = dxdt_hat
         
         return sol, sol_deriv, t
+    
+    
+    
+
+def smooth(y, t, window_size, poly_order=2, verbose=False):    
+    from scipy.signal import savgol_filter
+    from statsmodels.tsa.statespace.tools import diff
+
+
+    # Automatic tunning of the window size 
+    if window_size == None: 
+        
+        y_norm0 = (y[:,0]-min(y[:,0]))/(max(y[:,0])-min(y[:,0]))
+        smoothed_vec_0 = [y_norm0] 
+        std_prev = np.std(diff(y_norm0,1))
+        window_size_used = 1 
+        std1 = [] 
+        while True:
+            std1.append(std_prev)
+            window_size_used += 10
+            y_norm0 = savgol_filter(y_norm0, window_size_used, poly_order)
+            std_new = np.std(diff(y_norm0,1))
+            if verbose: 
+                print('Prev STD: %.5f - New STD: %.5f - Percent change: %.5f' % (std_prev, std_new, 100*(std_new-std_prev)/std_prev))
+            if abs((std_new-std_prev)/std_prev) < 0.1: 
+                window_size_used -= 10
+                break
+            else:
+                std_prev = std_new
+                smoothed_vec_0.append(y_norm0)
+                y_norm0 = (y[:,0]-min(y[:,0]))/(max(y[:,0])-min(y[:,0]))  
+            
+        if window_size_used > 1: 
+            print('Smoothing window size (dimension 1): '+str(window_size_used),'\n')
+            
+            y[:,0] = savgol_filter(y[:,0], window_size_used, poly_order)
+        else: 
+            print('No smoothing applied')
+            print('\n')
+        
+        
+        y_norm1 = (y[:,1]-min(y[:,1]))/(max(y[:,1])-min(y[:,1])) 
+        smoothed_vec_1 = [y_norm1] 
+        std_prev = np.std(diff(y_norm1,1))
+        window_size_used = 1 
+        std2 = [] 
+        while True:
+            std2.append(std_prev)
+            window_size_used += 10 
+            y_norm1 = savgol_filter(y_norm1, window_size_used, poly_order)
+            std_new = np.std(diff(y_norm1,1))
+            if verbose: 
+                print('Prev STD: %.5f - New STD: %.5f - Percent change: %.5f' % (std_prev, std_new, 100*(std_new-std_prev)/std_prev))
+            if abs((std_new-std_prev)/std_prev)  < 0.1: 
+                window_size_used -= 10
+                break   
+            else:
+                std_prev = std_new
+                smoothed_vec_1.append(y_norm1)
+                y_norm1 = (y[:,1]-min(y[:,1]))/(max(y[:,1])-min(y[:,1])) 
+                     
+             
+
+        if window_size_used > 1: 
+            print('Smoothing window size (dimension 2): '+str(window_size_used),'\n')
+            y[:,1] = savgol_filter(y[:,1], window_size_used, poly_order)
+        else: 
+            print('No smoothing applied')
+            print('\n')
+            
+        
+    # Pre-specified window size
+    else: 
+        y[:,0] = savgol_filter(y[:,0], window_size, poly_order)
+        y[:,1] = savgol_filter(y[:,1], window_size, poly_order)
+        
+        t = t[:len(y)]
+    
+    return y, t
+
+

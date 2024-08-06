@@ -12,7 +12,7 @@ from utils import data_generator
 import os
 import numpy as np
 
-def gsindy_2d_train(func, t, x0_list, a_list, real_list, suffix, basis, precision, alpha, opt, deriv_spline, ensemble, path_base='results', \
+def gsindy_2d_train(func, t, x0_list, a_list, real_list, suffix, basis, precision, alpha, opt, deriv_spline, ensemble, noise_var, path_base='results', \
                     threshold_sindy_list = [1e-3, 5e-3, 1e-2, 5e-2, 1e-1], \
                     threshold_group_list = [1e-3, 1e-2], \
                     threshold_similarity_list = [[1e-3, 1e-2], [1e-1]]):
@@ -36,7 +36,7 @@ def gsindy_2d_train(func, t, x0_list, a_list, real_list, suffix, basis, precisio
                     x0 = [x0_list[idx]]
                     a = [a_list[idx]]
                     
-                    t_, x0, a, sol_org_list, num_traj, num_feature = data_generator(func, x0, t, a, real_list, num, num_split)
+                    t_, x0, a, sol_org_list, num_traj, num_feature = data_generator(func, x0, t, a, real_list, num, num_split, noise_var=noise_var)
                     # ## add noise
                     # for i in range(len(sol_org_list)):
                     #     sol_org_list[i] = sol_org_list[i] + np.random.randn(*sol_org_list[i].shape)*sol_org_list[i]*.01
@@ -76,7 +76,7 @@ def gsindy_2d_train(func, t, x0_list, a_list, real_list, suffix, basis, precisio
             x0 = x0_list[:num]
             a = a_list[:num]
             
-            t_, x0, a, sol_org_list, num_traj, num_feature = data_generator(func, x0, t, a, real_list, num)
+            t_, x0, a, sol_org_list, num_traj, num_feature = data_generator(func, x0, t, a, real_list, num, noise_var)
             # ## add noise
             # for i in range(len(sol_org_list)):
             #     sol_org_list[i] = sol_org_list[i] + np.random.randn(*sol_org_list[i].shape)*sol_org_list[i]*.01

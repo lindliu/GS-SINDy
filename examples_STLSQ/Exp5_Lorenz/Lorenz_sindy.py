@@ -34,16 +34,28 @@ a_list = constants.a_list
 func = constants.func
 real_list = constants.real_list
 
-########## basis functions and optimizer ###########
-basis_type = constants.basis_type
-basis, opt = get_basis_functions(basis_type=basis_type, GSINDY=False)
+noise_var = constants.noise_var
+
+# ########## basis functions and optimizer ###########
+# basis_type = constants.basis_type
+# basis, opt = get_basis_functions(basis_type=basis_type, GSINDY=False)
 
 
-path_base = os.path.join(os.getcwd(), 'results')
-suffix = f'{basis_type}_SQTL' if opt=='Manually' else f'{basis_type}_{opt}'
-suffix = f'{suffix}_e' if ensemble else suffix
+# path_base = os.path.join(os.getcwd(), 'results')
+# suffix = f'{basis_type}_SQTL' if opt=='Manually' else f'{basis_type}_{opt}'
+# suffix = f'{suffix}_e' if ensemble else suffix
 if __name__ == "__main__":
     
     from sindy_3d_train import sindy_3d_train
-    sindy_3d_train(func, t, x0_list, a_list, real_list, suffix, basis, precision, \
-                   alpha, opt, deriv_spline, ensemble, path_base, threshold_sindy_list)
+    
+    for ensemble in [True, False]:
+        for basis_type in ['mix_diff', 'poly']:
+            
+            basis, opt = get_basis_functions(basis_type=basis_type, GSINDY=False)
+            path_base = os.path.join(os.getcwd(), 'results')
+            suffix = f'{basis_type}_SQTL' if opt=='Manually' else f'{basis_type}_{opt}'
+            suffix = f'{suffix}_e' if ensemble else suffix
+            
+            
+            sindy_3d_train(func, t, x0_list, a_list, real_list, suffix, basis, precision, \
+                           alpha, opt, deriv_spline, ensemble, path_base, threshold_sindy_list)

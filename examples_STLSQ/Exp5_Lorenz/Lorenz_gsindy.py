@@ -36,16 +36,24 @@ a_list = constants.a_list
 func = constants.func
 real_list = constants.real_list
 
-########## basis functions and optimizer ###########
-basis_type = constants.basis_type
-basis, opt = get_basis_functions(basis_type=basis_type, GSINDY=True)
+noise_var = constants.noise_var
+
+# ########## basis functions and optimizer ###########
+# basis_type = constants.basis_type
+# basis, opt = get_basis_functions(basis_type=basis_type, GSINDY=True)
 
 
-path_base = os.path.join(os.getcwd(), 'results')
-suffix = f'{basis_type}_SQTL' if opt=='Manually' else f'{basis_type}_{opt}'
+# path_base = os.path.join(os.getcwd(), 'results')
+# suffix = f'{basis_type}_SQTL' if opt=='Manually' else f'{basis_type}_{opt}'
 if __name__ == "__main__":
     
     from gsindy_3d_train import gsindy_3d_train
-    gsindy_3d_train(func, t, x0_list, a_list, real_list, suffix, basis, precision, alpha, opt, deriv_spline, ensemble, path_base, 
-                    threshold_sindy_list, threshold_group_list, threshold_similarity_list)
     
+    for basis_type in ['mix_diff', 'poly']:
+        basis, opt = get_basis_functions(basis_type=basis_type, GSINDY=True)
+        path_base = os.path.join(os.getcwd(), 'results')
+        suffix = f'{basis_type}_SQTL' if opt=='Manually' else f'{basis_type}_{opt}'
+    
+        gsindy_3d_train(func, t, x0_list, a_list, real_list, suffix, basis, precision, alpha, opt, deriv_spline, ensemble, path_base, 
+                        threshold_sindy_list, threshold_group_list, threshold_similarity_list)
+        

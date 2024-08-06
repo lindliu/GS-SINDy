@@ -24,7 +24,7 @@ threshold_similarity_list = [[1e-3, 1e-2], [1e-1]]
 # but we know it comes from the same series, 
 # so the coefficient should be the same, so threshold should be big
 
-
+noise_var = 0
 ########## function variable ###########
 dt = .1
 t = np.arange(0,5,dt)
