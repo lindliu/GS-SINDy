@@ -1,1 +1,1 @@
-\title GS-SINDy: Implementation and Data Generator
+# GS-SINDy: Sparse Identification of Nonlinear Dynamical Systems
