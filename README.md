@@ -1,1 +1,1 @@
-\big GS-SINDy: Implementation and Data Generator
+\title GS-SINDy: Implementation and Data Generator
